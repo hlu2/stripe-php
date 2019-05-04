@@ -61,6 +61,7 @@ class Customer extends ApiResource
         return $savedNestedResources;
     }
 
+    const PATH_CUSTOMER_BALANCE_TRANSACTIONS = '/customer_balance_transactions';
     const PATH_SOURCES = '/sources';
     const PATH_TAX_IDS = '/tax_ids';
 
@@ -263,5 +264,42 @@ class Customer extends ApiResource
     public static function allTaxIds($id, $params = null, $opts = null)
     {
         return self::_allNestedResources($id, static::PATH_TAX_IDS, $params, $opts);
+    }
+
+    /**
+     * @param string|null $id The ID of the customer on which to create the customer balance transaction.
+     * @param array|null $params
+     * @param array|string|null $opts
+     *
+     * @return ApiResource
+     */
+    public static function createCustomerBalanceTransaction($id, $params = null, $opts = null)
+    {
+        return self::_createNestedResource($id, static::PATH_CUSTOMER_BALANCE_TRANSACTIONS, $params, $opts);
+    }
+
+    /**
+     * @param string|null $id The ID of the customer to which the customer balance transaction belongs.
+     * @param string|null $customerBalanceTransactionId The ID of the customer balance transaction to retrieve.
+     * @param array|null $params
+     * @param array|string|null $opts
+     *
+     * @return ApiResource
+     */
+    public static function retrieveCustomerBalanceTransaction($id, $customerBalanceTransactionId, $params = null, $opts = null)
+    {
+        return self::_retrieveNestedResource($id, static::PATH_CUSTOMER_BALANCE_TRANSACTIONS, $customerBalanceTransactionId, $params, $opts);
+    }
+
+    /**
+     * @param string|null $id The ID of the customer on which to retrieve the customer balance transactions.
+     * @param array|null $params
+     * @param array|string|null $opts
+     *
+     * @return Collection The list of customer balance transactions.
+     */
+    public static function allCustomerBalanceTransactions($id, $params = null, $opts = null)
+    {
+        return self::_allNestedResources($id, static::PATH_CUSTOMER_BALANCE_TRANSACTIONS, $params, $opts);
     }
 }
